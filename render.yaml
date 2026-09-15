@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: a-little-love-letter
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python serve.py
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.13.12
+      - key: K3QYQdI2gtzIVSQ50sFuYNFSwJAH03BJ
+        generateValue: true
+      - key: onlyusdec5
+        sync: false
+      - key: COOKIE_SECURE
+        value: "true"
+      - key: Shobika
+        value: My love
+      - key: Haris
+        value: Your forever person
+      - key: BIRTHDAY_DATE
+        value: "2026-12-05"
+      - key: BIRTHDAY_TIMEZONE
+        value: Asia/Kolkata

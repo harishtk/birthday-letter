@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block body %}
+<div id="birthday-data" data-config='{{ config_data | tojson }}' hidden></div>
+<canvas id="confetti" aria-hidden="true"></canvas>
+<header class="nav wrap">
+  <a class="wordmark" href="#">a little love letter <span>♡</span></a>
+  <nav aria-label="Main navigation"><a href="#memories">Our moments</a><a href="#letter">For you</a><a href="#wishes">Little wishes</a></nav>
+  <form method="post" action="/logout"><input type="hidden" name="csrf_token" value="{{ csrf_token }}"><button class="lock-button" aria-label="Lock this page">Lock <span aria-hidden="true">♡</span></button></form>
+</header>
+<main>
+  <section class="hero wrap" aria-labelledby="hero-title">
+    <div class="hero-copy">
+      <p class="eyebrow"><span class="small-star">✦</span> {{ date_label }} · A DAY THE WORLD GOT LUCKIER</p>
+      <p class="handwritten hello">To my favourite person,</p>
+      <h1 id="hero-title">You deserve<br>a little <em>magic.</em></h1>
+      <p class="hero-description" id="hero-description">An advance birthday wish for you, {{ name }}. Because one day could never be enough to celebrate all that you are.</p>
+      <a class="button" href="#letter">I made you something <span aria-hidden="true">↗</span></a>
+      <div class="hero-note"><span aria-hidden="true">♡</span> A little early. With all my heart.</div>
+    </div>
+    <div class="hero-art" aria-label="An illustrated love letter with a heart seal">
+      <span class="art-star star-one">✧</span><span class="art-star star-two">✦</span>
+      <div class="orbit"></div>
+      <div class="letter-paper"><span class="eyebrow">SPECIAL DELIVERY</span><span class="paper-title">For you,<br><em>always.</em></span><span class="paper-heart">♡</span></div>
+      <div class="envelope"><div class="envelope-fold"></div><span class="wax-seal">♡</span></div>
+      <span class="handwritten art-caption">a thousand little reasons<br>to celebrate you</span>
+      <span class="floating-heart">♡</span>
+    </div>
+  </section>
+  <section class="countdown-section wrap" aria-labelledby="countdown-title">
+    <div class="countdown-heading"><span class="eyebrow" id="countdown-title">COUNTING THE MOMENTS UNTIL YOUR DAY</span><span class="date-tag">{{ date_label }} <span aria-hidden="true">✧</span></span></div>
+    <div class="countdown" role="timer" aria-label="Time until your birthday">
+      <div><span id="days" class="digit">--</span><span class="unit">DAYS</span></div><span class="colon">:</span>
+      <div><span id="hours" class="digit">--</span><span class="unit">HOURS</span></div><span class="colon">:</span>
+      <div><span id="minutes" class="digit">--</span><span class="unit">MINUTES</span></div><span class="colon">:</span>
+      <div><span id="seconds" class="digit">--</span><span class="unit">SECONDS</span></div>
+    </div>
+    <p id="countdown-note">Every second brings me closer to celebrating you. <span>♡</span></p>
+    <p class="birthday-announcement" id="birthday-announcement" role="status"></p>
+    <button id="celebrate" class="button" hidden>A little more confetti ✧</button>
+    <noscript><p>Your birthday is {{ date_label }} at midnight, {{ config.BIRTHDAY_TIMEZONE }}. Enable JavaScript for the live countdown and celebration.</p></noscript>
+  </section>
+  <section class="memories-section wrap" id="memories">
+    <div class="section-heading"><div><p class="eyebrow">THE LITTLE THINGS. THE EVERYTHING.</p><h2>Us, in little <em>moments.</em></h2></div><span class="handwritten">my favourite kind of forever ♡</span></div>
+    <div class="photo-grid">
+      {% for photo in content.photos %}<figure class="polaroid">
+        <div class="photo-space photo-{{ loop.index }}">
+          {% if photo.src %}<img src="{{ photo.src }}" alt="{{ photo.label }}" loading="lazy">{% endif %}
+          <div class="photo-placeholder" {% if photo.src %}hidden{% endif %}><span aria-hidden="true">{% if loop.index == 2 %}✿{% else %}♡{% endif %}</span><span>{{ photo.label }}</span><small>A memory belongs here</small></div>
+        </div><figcaption>{{ photo.caption }}</figcaption>
+      </figure>{% endfor %}
+    </div>
+  </section>
+  <section class="letter-section wrap" id="letter">
+    <div class="letter-aside"><p class="eyebrow">STRAIGHT FROM MY HEART</p><h2>If I could give<br>you <em>one thing…</em></h2><span class="handwritten">it would be the way<br>I see you.</span><span class="outline-heart" aria-hidden="true">♡</span></div>
+    <article class="personal-letter"><span class="letter-number">A NOTE FOR YOU · 01</span><h3>{{ name }},</h3>{% for paragraph in content.letter %}<p>{{ paragraph }}</p>{% endfor %}<p class="signature">All my love, always.<br><span class="handwritten">{{ sender }} ♡</span></p></article>
+  </section>
+  <section class="wishes-section wrap" id="wishes"><div class="center-heading"><p class="eyebrow">A LITTLE LOVE, SENT INTO THE UNIVERSE</p><h2>My wishes <em>for you.</em></h2></div><div class="wish-grid">{% for wish in content.wishes %}<article class="wish-card"><span class="wish-icon" aria-hidden="true">{{ wish.icon }}</span><h3>{{ wish.title }}</h3><p>{{ wish.text }}</p></article>{% endfor %}</div></section>
+  <section class="fortune-section wrap"><span class="fortune-star" aria-hidden="true">✧</span><p class="eyebrow">A PEEK AT THE LOVELY THINGS AHEAD</p><h2>The universe has <em>a little note.</em></h2><p id="fortune" aria-live="polite">A little bit of wonder, just for you. Shall we?</p><button class="button outline" id="fortune-button">Open a little fortune <span aria-hidden="true">↗</span></button><p class="tiny">A playful prediction. A very real wish for your happiness.</p></section>
+</main>
+<footer class="wrap"><span class="wordmark">you, me & all the tomorrows <span>♡</span></span><span>Made with so much love. Only for you.</span></footer>
+<script src="{{ url_for('static', filename='app.js') }}" defer></script>
+{% endblock %}

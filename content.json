@@ -1,0 +1,25 @@
+{
+  "letter": [
+    "Somehow, in a world full of people, I found you. And every ordinary day since has had a little more magic in it.",
+    "I love your laugh, your kindness, and all the little things you do without knowing how much they mean to me. You are my favourite hello, my safest place, and the future I can't wait to live.",
+    "Your birthday may still be on its way, but celebrating you could never start too early. Here's to your dreams, your happiness, and a lifetime of us."
+  ],
+  "photos": [
+    {"src": "/photos/holding_hands.jpg", "caption": "I caught the most precious hands in my life.", "label": "A little moment of us"},
+    {"src": "/photos/standing_close.jpg", "caption": "That smile. Always that smile.", "label": "Your beautiful smile"},
+    {"src": "/photos/bracelet.jpg", "caption": "A thousand more adventures, please", "label": "Our next chapter"}
+  ],
+  "wishes": [
+    {"icon": "✧", "title": "For your dreams", "text": "May the things you quietly wish for find their way to you. I'll be right beside you, cheering the loudest."},
+    {"icon": "♡", "title": "For your heart", "text": "May you always feel loved, safe, and understood. Especially on the days you need a little extra tenderness."},
+    {"icon": "☼", "title": "For your everyday", "text": "More belly laughs, slow mornings, beautiful surprises, and all the small things that make you feel alive."}
+  ],
+  "fortunes": [
+    "A little adventure with your favourite person is waiting around the corner.",
+    "This next chapter holds a dream coming true—and someone holding your hand through it.",
+    "Your future contains an unreasonable number of forehead kisses.",
+    "Something lovely will find you when you least expect it.",
+    "A home full of laughter, warm hugs, and us. That's what I see.",
+    "You will keep becoming more yourself. And I will keep falling for you."
+  ]
+}

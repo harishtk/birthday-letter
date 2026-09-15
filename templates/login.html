@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block body %}
+<main class="login-page">
+  <a class="wordmark" href="/">a little love letter <span>♡</span></a>
+  <section class="login-card">
+    <div class="seal" aria-hidden="true">♡</div>
+    <p class="eyebrow">ONLY FOR YOU</p>
+    <h1>A little secret.<br><em>A whole lot of love.</em></h1>
+    <p>Something special is waiting for you, {{ name }}.<br>Use our secret password to peek inside.</p>
+    <form method="post">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+      <label for="password">Our little password</label>
+      <input id="password" name="password" type="password" autocomplete="current-password" required maxlength="512" placeholder="Just between us…" {% if error %}aria-describedby="error" aria-invalid="true"{% endif %}>
+      {% if error %}<p id="error" class="error" role="alert">{{ error }}</p>{% endif %}
+      <button class="button" type="submit">Open your surprise <span aria-hidden="true">↗</span></button>
+    </form>
+    <span class="handwritten">made for my favourite person</span>
+  </section>
+  <p class="tiny">A little corner of the internet. A whole heart of love.</p>
+</main>
+{% endblock %}
